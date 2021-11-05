@@ -21,7 +21,7 @@ urlRouter.post("/", (req, res) => {
           if(err)
           console.log(err);
       })
-      res.send([originalUrl, creationDate, newShortId, 0])
+      res.send(newShortId);
   })
 
 module.exports = urlRouter; // export the router

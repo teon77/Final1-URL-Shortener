@@ -9,10 +9,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false} ))
 app.use('/', express.static(path.resolve('./dist')));               // serve main path as static dir
 
-app.get('/', async function(req, res) {     
+app.get('/', async (req, res) => {     
   res.sendFile(path.resolve('dist\index.html'))
 });
 
+app.get("/statistic", async (req, res) => {
+    res.sendFile(path.resolve('urlDB.json'));
+})
 app.use("/shorturl", urlRouter)
 
 
