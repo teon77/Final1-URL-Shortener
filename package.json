@@ -20,6 +20,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^6.0.12",
+    "node-url-shortener": "^2.0.0",
     "shortid": "^2.2.16"
   },
   "devDependencies": {
