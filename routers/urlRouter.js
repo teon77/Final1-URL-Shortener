@@ -12,7 +12,6 @@ const dataArr = JSON.parse(data);
 urlRouter.post("/", (req, res, next) => {
     try {
     const originalUrl = req.body.fullUrl;
-    isValidUrl(originalUrl);
     const creationDate = new Date().toISOString().slice(0, 10)
     const newShortId =  shortId.generate( req.body.fullUrl )                     // create shortUrl
         
@@ -28,13 +27,5 @@ urlRouter.post("/", (req, res, next) => {
     }
   })
 
-  const isValidUrl = (urlString) => {
-    let url;
-    try {
-      url = new URL(urlString);
-    } catch (_) {
-      throw { text: "You must provide a valid URL.."}
-    }
-  }
 
 module.exports = urlRouter; // export the router
