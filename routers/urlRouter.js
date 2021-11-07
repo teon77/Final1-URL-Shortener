@@ -12,9 +12,10 @@ const dataArr = JSON.parse(data);
 urlRouter.post("/", (req, res, next) => {
     try {
     const originalUrl = req.body.fullUrl;
+    isValidUrl(originalUrl);
     const creationDate = new Date().toISOString().slice(0, 10)
     const newShortId =  shortId.generate( req.body.fullUrl )                     // create shortUrl
-
+        
     dataArr.push(new DataBase( creationDate, 0, originalUrl, newShortId));
     console.log(dataArr);
       fs.writeFile("urlDB.json", JSON.stringify(dataArr, null, 2), (err) => {
@@ -26,5 +27,14 @@ urlRouter.post("/", (req, res, next) => {
         next(error);
     }
   })
+
+  const isValidUrl = (urlString) => {
+    let url;
+    try {
+      url = new URL(urlString);
+    } catch (_) {
+      throw { text: "You must provide a valid URL.."}
+    }
+  }
 
 module.exports = urlRouter; // export the router
